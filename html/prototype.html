@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<style>
+	
+		@font-face {
+			font-family: 'Jal_Onuel';
+			src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Jal_Onuel.woff') format('woff');
+			font-weight: normal;
+			font-style: normal;
+		}		
+		@font-face {
+			font-family: 'CookieRunOTF-Bold';
+			src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/CookieRunOTF-Bold00.woff') format('woff');
+			font-weight: normal;
+			font-style: normal;
+		}
+
+		*{
+			font-family: 'Jal_Onuel','malgun gothic';
+
+		}
+		.special-section{
+			margin: 0 auto 120px;
+		}
+		h3{
+			margin: 0 auto 80px;
+			font-family: 'CookieRunOTF-Bold';
+			font-size:40px;
+			color:rgb(0,0,0);
+		}
+		.special-txt{
+			margin: 0 auto 40px;
+			font-family: 'Jal_Onuel' !important;
+			font-size:14px;
+			line-height: 20px;
+			color:rgb(10,10,10);
+		}
+	
+	</style>
+
+	<div>
+		<p class="special-txt">
+			안녕하세요 이번에는 프로토타입에 대해서 포스팅하겠습니다 gogo!
+		</p>
+
+		<section class="special-section">
+			<h3>프로토타입(Prototype)은 무엇이냐</h3>
+
+			<br>
+			<pre class="js">
+			<code>
+				function Person(){
+					this.name = 'rim';
+					this.job = 'siger'
+				}
+				var obj1 = new Person();
+				obj1.age = 12;
+				var obj2 = new Person();
+			</code>
+			</pre>
+			<br>
+
+			<p class="special-txt">
+				Person 생성자 함수를 만들고 new 키워드를 사용하여 obj1 , obj2 두 인스턴스를 생성하였습니다. <br>
+				그리고 obj1 인스턴스를 생성한후 age 라는 속성을 만들어주었어요<br>
+				그럼 obj2에서도 age라는 속성을 사용할 수 있을까요?<br><br>
+
+				정답은 no 입니다!
+			</p>
+
+			<br>
+			<pre class="js">
+			<code>
+				function Person(){
+					this.name = 'rim';
+					this.job = 'siger'
+				}
+				var obj1 = new Person();
+				obj1.age = 12;
+				var obj2 = new Person();
+
+				console.log(obj1.age); //12
+				console.log(obj2.age); //undefined
+			</code>
+			</pre>
+			<br>
+
+			<p class="special-txt">
+				obj1 에만 age 속성을 주었기 때문에 obj2 에는 undefined 결과가 나오죠<br>
+				obj1 , obj2 두객체가 age속성을 공유하려면 필요한것이 바로 prototype 입니다.
+			</p>
+
+			<br>
+			<pre class="js">
+			<code>
+				function Person(){
+					this.name = 'rim';
+					this.job = 'siger'
+				}
+
+				Person.prototype.age = 12
+
+				var obj1 = new Person();
+				var obj2 = new Person();
+
+				console.log(obj1.age); //12
+				console.log(obj2.age); //12
+			</code>
+			</pre>
+			<br>
+
+			<p class="special-txt">
+				프로토타입은 모든 함수,객체와 연결된 객체입니다.<br>
+				그렇기 때문에 생성자함수인 Person prototype에 접근하여 age 속성을 넣어주면<br>
+				obj1 , obj2 가 바라보고 있는것이 Person이기 때문에 age 속성을 공유할 수 있죠
+				위의코드에서 결과 값이 12가 나오는 걸 확인하실 수 있습니다
+			</p>
+			<p class="special-txt">
+				obj1 에만 age 속성을 주었기 때문에 obj2 에는 undefined 결과가 나오죠<br>
+				obj1 , obj2 두객체가 age속성을 공유하려면 필요한것이 바로 prototype 입니다.
+			</p>
+
+			<div>이미지 function > prototype</div>
+
+			<p class="special-txt">
+				위의 그림을 보면 알 수 있듯이
+				생성자함수를 만들어 새 인스턴스를 만들면 새 객체가 생성되면서
+				생성자함수의 프로토타입과 서로 공유할 수 있게 되는것이죠!
+			</p>
+		</section>
+
+		<h3>__proto__</h3>
+
+		<p class="special-txt">
+			프로토타입은 객체에도 연결되어 있습니다.
+			그런데 prototype 으로 접근하는 것이 아니라 __proto__ 속성으로 접근가능해요.
+		</p>    
+
+		<br>
+		<pre class="js">
+		<code>
+			console.log(typeof Person.prototype) // object
+			console.log(typeof obj1.prototype) // undefined
+			console.log(typeof obj1.__proto__) //object
+
+			console.log(Person.prototype ===  obj1.__proto__) // true
+		</code>
+		</pre>
+		<br>
+
+		<p class="special-txt">
+			prototype으로 접근을 시도하니 undefined결과가 나오죠.
+			
+		</p>    
+	</div>
+</body>
+</html>
