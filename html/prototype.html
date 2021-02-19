@@ -181,8 +181,9 @@
 			<br>
 
 			<p class="special-txt">
-				새 변수에 obj1객체의 프로토타입을 담아주고 firstName 속성을 추가해주었습니다.
+				새 변수에 object.getPrototypeOf()를 사용하여 obj1를 담아주고 firstName 속성을 추가해주었습니다.
 				그럼 생성자함수 Person에서도 firstName 속성을 사용할 수 있겠죠
+				Object.getPrototypeOf(obj1.__proto__)가 들어있다고 생각하시면 됩니다.
 			</p> 
 		</section>
 		<section class="special-section">
@@ -196,7 +197,7 @@
 			<pre class="js">
 			<code>
 				function Person(name,job){
-					this.name = name;
+					this.name = name	;
 					this.job = job
 				}
 
@@ -219,12 +220,18 @@
 			<p class="special-txt">
 				위의 코드를 그림으로 풀어놓았는데요.
 				우선 Person함수의 프로토타입에 desc() 메소드를 넣어놨습니다.
-				obj1과 obj2는 new 키워드를 사용해 person함수를 호출하고 있으니 name 속성을 갖게되죠.
-				obj1에만 start()메소드를 만들어주었으니 혼자만 start()를 가지고 있어요
+				obj1과 obj2는 new 키워드를 사용해 person함수를 호출하고 있으니 각각 name 속성을 갖게되죠.
+				그리고 obj1에 start() 메서드를 만들어주었어요.
 				obj1.start()를 호출하면 함수 안에서 desc()를 찾습니다.
 				근데 obj1안에는 없죠?
 				이때 프로토타입체인을 타고 Person()의 프로토타입 객체에서 찾습니다.
-				Person()의 프로토타입에 desc()가 있으니 obj1.start()가 잘 실행되는걸 확인하실 수 있습니다.
+				Person()의 프로토타입에 desc()가 있으니 obj1은 '엇 desc() 메소드가 있네' 하고
+				이 메소드를 return 해줍니다.
+				obj2를 봐볼까요?
+				obj1이랑 obj2가 같은 생성자 함수를 호출하니까 start()메소드를 같이 사용할 수 있을거 같죠?
+				하지만 아닙니다.
+				obj1,obj2는 각각 다른 그릇에 생성자함수를 담고있는 것이고
+				obj1 그릇에만 start메소드를 담아주었으니 obj2에서는 이 함수의 존재도 모르는것이죠.
 			</p> 
 
 
