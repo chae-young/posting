@@ -118,19 +118,15 @@
 			<p class="special-txt">
 				프로토타입은 모든 함수,객체와 연결된 객체입니다.<br>
 				그렇기 때문에 생성자함수인 Person prototype에 접근하여 age 속성을 넣어주면<br>
-				obj1 , obj2 가 바라보고 있는것이 Person이기 때문에 age 속성을 공유할 수 있죠
+				obj1 , obj2 가 바라보고 있는것이 Person이기 때문에 age 속성을 공유할 수 있죠<br>
 				위의코드에서 결과 값이 12가 나오는 걸 확인하실 수 있습니다
 			</p>
-			<p class="special-txt">
-				obj1 에만 age 속성을 주었기 때문에 obj2 에는 undefined 결과가 나오죠<br>
-				obj1 , obj2 두객체가 age속성을 공유하려면 필요한것이 바로 prototype 입니다.
-			</p>
 
-			<div>이미지 function > prototype</div>
+			<div><img src="/images/prototype/proto1.png" alt=""></div>
 
 			<p class="special-txt">
-				위의 그림을 보면 알 수 있듯이
-				생성자함수를 만들어 새 인스턴스를 만들면 새 객체가 생성되면서
+				위의 그림을 보면 알 수 있듯이<br>
+				생성자함수를 만들어 새 인스턴스를 만들면 새 객체가 생성되면서<br>
 				생성자함수의 프로토타입과 서로 공유할 수 있게 되는것이죠!
 			</p>
 		</section>
@@ -138,9 +134,9 @@
 			<h3>__proto__</h3>
 
 			<p class="special-txt">
-				프로토타입은 객체에도 연결되어 있습니다.
-				그런데 prototype 으로 접근하는 것이 아니라 __proto__ 속성으로 접근가능해요.
-				new 키워드로 생성자 함수를 호출하면 새 객체가 만들어지면서 __proto__가 같이 생성됩니다.
+				프로토타입은 객체에도 연결되어 있습니다.<br>
+				그런데 prototype 으로 접근하는 것이 아니라 __proto__ 속성으로 접근가능해요.<br>
+				변수에 new 키워드로 생성자 함수를 호출하면 새 객체가 만들어지면서 __proto__가 같이 생성됩니다.
 			</p>    
 
 			<br>
@@ -156,15 +152,15 @@
 			<br>
 
 			<p class="special-txt">
-				obj1 객체에 prototype으로 접근을 시도하니 undefined결과가 나오죠.
-				__proto__로 접근하였더니 객체를 반환합니다.
+				obj1 객체에 prototype으로 접근을 시도하니 undefined결과가 나오죠.<br>
+				__proto__로 접근하였더니 객체를 반환합니다.<br><br>
 				
-				함수의 prototype과 객체의 __proto__가 서로 공유하는 관계이기 때문에 
-				이 둘은 결국 같은거겠죠!
-				위에 코드를 보면 알수 있듯이 true를 반환합니다.
+				함수의 prototype과 객체의 __proto__가 서로 공유하는 관계이기 때문에 <br>
+				이 둘은 결국 같은거겠죠!<br>
+				서로 같은지 비교해보면 true를 반환합니다.
 			</p>    
 			<p class="special-txt">
-				그런데 __proto__는 현재 비표준화 되어있어요. 
+				그런데 __proto__는 현재 비표준화 되어있어요. <br>
 				그래서 표준화된 object.getPrototypeOf() 을 사용합니다. 객체의 프로토타입을 반환해주는 메소드에요
 			</p>
 
@@ -181,16 +177,17 @@
 			<br>
 
 			<p class="special-txt">
-				새 변수에 object.getPrototypeOf()를 사용하여 obj1를 담아주고 firstName 속성을 추가해주었습니다.
-				그럼 생성자함수 Person에서도 firstName 속성을 사용할 수 있겠죠
+				새 변수에 object.getPrototypeOf()를 사용하여 obj1를 담아주고 firstName 속성을 추가해주었습니다.<br>
+				그럼 생성자함수 Person에서도 firstName 속성을 사용할 수 있겠죠<br>
 				Object.getPrototypeOf(obj1.__proto__)가 들어있다고 생각하시면 됩니다.
 			</p> 
 		</section>
 		<section class="special-section">
 			<h3>Prototype Chain</h3>
 			<p class="special-txt">
-				객체의 __proto__와 함수의 prototype은 서로 공유하는 관계라고 했죠.
+				객체의 __proto__와 함수의 prototype은 서로 공유하는 관계라고 했죠.<br>
 				바로 서로 연결되어 있다는 뜻입니다. 이걸 prototype chain이라고 합니다
+				객체가 [[prototype]] 링크를 통해 프로토타입 객체의 메소드와 속성을 사용할 수 있습니다.				
 			</p> 
 
 			<br>
@@ -216,42 +213,215 @@
 			</code>
 			</pre>
 			<br>
+			<div><img src="/images/prototype/proto2.png" alt=""></div>
 
 			<p class="special-txt">
-				위의 코드를 그림으로 풀어놓았는데요.
-				우선 Person함수의 프로토타입에 desc() 메소드를 넣어놨습니다.
-				obj1과 obj2는 new 키워드를 사용해 person함수를 호출하고 있으니 각각 name 속성을 갖게되죠.
-				그리고 obj1에 start() 메서드를 만들어주었어요.
-				obj1.start()를 호출하면 함수 안에서 desc()를 찾습니다.
-				근데 obj1안에는 없죠?
-				이때 프로토타입체인을 타고 Person()의 프로토타입 객체에서 찾습니다.
-				Person()의 프로토타입에 desc()가 있으니 obj1은 '엇 desc() 메소드가 있네' 하고
-				이 메소드를 return 해줍니다.
-				obj2를 봐볼까요?
-				obj1이랑 obj2가 같은 생성자 함수를 호출하니까 start()메소드를 같이 사용할 수 있을거 같죠?
-				하지만 아닙니다.
-				obj1,obj2는 각각 다른 그릇에 생성자함수를 담고있는 것이고
+				위의 코드를 그림으로 풀어놓았는데요.<br>
+				우선 Person함수의 프로토타입에 desc() 메소드를 넣어놨습니다.<br>
+				obj1과 obj2는 new 키워드를 사용해 person함수를 호출하고 있으니 각각 name,job 속성을 갖게되죠.<br>
+				그리고 obj1에 start() 메서드를 만들어주었어요.<br>
+				obj1.start()를 호출하면 함수 안에서 return 값인 desc()를 찾습니다.<br>
+				근데 obj1안에는 없죠?<br>
+				이때 프로토타입체인을 타고 Person()의 프로토타입 객체에서 찾습니다.<br>
+				Person()의 프로토타입에 desc()가 있으니 obj1은 '엇 desc() 메소드가 있네' 하고<br>
+				이 메소드를 return 해줍니다.<br>
+				obj2를 봐볼까요?<br>
+				obj1이랑 obj2가 같은 생성자 함수를 호출하니까 start()메소드를 같이 사용할 수 있을거 같죠?<br>
+				하지만 아닙니다.<br>
+				obj1,obj2는 각각 다른 그릇에 생성자함수를 담고있는 것이고<br>
 				obj1 그릇에만 start메소드를 담아주었으니 obj2에서는 이 함수의 존재도 모르는것이죠.
 			</p> 
-
-
-위의 다이어그램에서 점선의 오른쪽은 기본적으로 발생합니다.
-javascript에는 Object라는 함수가 있으며 모든 함수는 프로토타입 속성을 가지고 있다. 
-따라서 Object라는 이름의 함수도 프로토타입 속성을 가지며 .toString() , .type of() 등이 프로토타입 객체의 일부입니다.
-위의 다이어그램에서 박스는 객체이고 원은 함수입니다. 
-자동차는 생성자 함수이며 우리가 알듯이 각 함수는 javascript에서 프로토타입 속성을 가진다. 
-start()는 Car.protype 객체의 속성인 함수/방법이다.
-위의 코드 조각에서, car() 함수는 c1과 c2를 구성하는 새로운 키워드를 앞에 두고 호출된다. 
-두 개체 모두 name 속성을 가지며 c2에는 추가 메서드 스피크()도 있습니다.
-그러나 코드 실행 중에 중요한 것은 c1이며 c2는 [Prototype]이라고 하는 내부 링크와 Car.protype과 연결됩니다.
-Car.protype이 Object.protype에 연결되기도 전에 [[Prototype]]라고 하는 유사한 내부 링크가 있습니다. (위 다이어그램 참조 시 프로토타입 링크 참조)
-위의 코드에서 c2.speak()가 실행될 때 함수 speak()가 this.start()를 호출하고 여기서 이것은 현재 실행 컨텍스트(예: c2이지만 c2는 start() 메서드를 가지지만 대답은 no이다.
-따라서 [[Prototype]] 체인을 통해 Car.protype 객체의 일부로 시작() 방법을 사용할 수 있는지 여부를 확인합니다. 
-답은 "예"입니다. 따라서 c2(현재 실행 컨텍스트 개체)의 this.name 속성을 인쇄하는 시작 방법을 시작합니다. 
-마지막으로 c2.speak() 인쇄에 "Hello, fiesta의 엔진 시동…"이 표시됩니다.
-
+			<div><img src="/images/prototype/proto3.png" alt=""></div>
+			<br>
+			<pre class="js">
+			<code>
+				obj1.toString() // "[object Object]"
+			</code>
+			</pre>
+			<br>			
+			<p class="special-txt">
+				자 그럼 obj1에 객체의 toString() 메소드를 불러오면 어떻게될까요?<br>
+				바로 프로토타입체인을 통해서 Object의 toString()메소드를 불러와 객체문자를 반환하게 됩니다.<br>
+				자바스크립트에 기본적으로 Object()가 내장되어있는데 모든 함수객체가 프로토타입을 가지고 있으니<br>
+				Object도 프로토타입이 당연히 있겠죠<br>
+				그래서 Object 속성을 사용할 수 있는거에요.<br>
+				프로토타입은 연결되어있어 공유할 수 있다를 항상 염두해둡시다
+			</p> 
 		</section>
-
+		<section class="special-section">
+			<h3>정리</h3>
+			<ul class="special-txt">
+				<li>모든 함수는 prototype 객체를 포함하고 있다.</li>
+				<li>new 키워드로 생성자 함수를 호출하면 __proto__가 생성되고 prototype과 공유된다</li>
+				<li>Object.getPrototypeOf() 은 프로토타입 연결에 접근 할 수 있다</li>
+				<li>객체들이 프로토타입체인을 통해 모든 속성과 메소드를 공유할 수 있다</li>
+				<li>Object()도 프로토타입을 가지고 있다</li>
+			</ul>
+		</section>
 	</div>
+
+	<!-- 티스토리 올린 본-->
+	<style>
+	
+		@font-face {
+			font-family: 'Jal_Onuel';
+			src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Jal_Onuel.woff') format('woff');
+			font-weight: normal;
+			font-style: normal;
+		}		
+		@font-face {
+			font-family: 'CookieRunOTF-Bold';
+			src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/CookieRunOTF-Bold00.woff') format('woff');
+			font-weight: normal;
+			font-style: normal;
+		}
+
+		*{
+			font-family: 'Jal_Onuel','malgun gothic';
+
+		}
+		.special-section{
+			margin: 120px auto;
+		}
+		.skin_view .area_view h3.ps-tit{
+			margin: 0 auto 80px;
+			font-family: 'CookieRunOTF-Bold';
+			font-size:40px;
+			color:rgb(0,0,0);
+		}
+		.special-txt{
+			margin: 0 auto 40px;
+			font-family: 'Jal_Onuel' !important;
+			font-size:14px;
+			line-height: 20px;
+			color:rgb(10,10,10);
+		}
+	
+	</style>	
+	
+	<p class="special-txt">안녕하세요 이번에는 프로토타입에 대해서 포스팅하겠습니다 gogo!</p>
+	<section class="special-section">
+	<h3 class="ps-tit">프로토타입(Prototype)은 무엇이냐</h3>
+	<br />
+	<pre class="js javascript"><code>			
+	function Person(){
+		this.name = 'rim';
+		this.job = 'siger'
+	}
+	var obj1 = new Person();
+	obj1.age = 12;
+	var obj2 = new Person();
+	</code></pre>
+	<br />
+	<p class="special-txt">Person 생성자 함수를 만들고 new 키워드를 사용하여 obj1 , obj2 두 인스턴스를 생성하였습니다. <br />그리고 obj1 인스턴스를 생성한후 age 라는 속성을 만들어주었어요<br />그럼 obj2에서도 age라는 속성을 사용할 수 있을까요?<br /><br />정답은 no 입니다!</p>
+	<br />
+	<pre class="js javascript"><code>				
+	function Person(){
+		this.name = 'rim';
+		this.job = 'siger'
+	}
+	
+	var obj1 = new Person();
+	obj1.age = 12;
+	var obj2 = new Person();
+	
+	console.log(obj1.age); //12
+	console.log(obj2.age); //undefined
+				</code></pre>
+	<br />
+	<br />
+	<br />
+	<p class="special-txt">obj1 에만 age 속성을 주었기 때문에 obj2 에는 undefined 결과가 나오죠<br />obj1 , obj2 두객체가 age속성을 공유하려면 필요한것이 바로 prototype 입니다.</p>
+	<br />
+	<br />
+	<br />
+	<pre class="js javascript"><code>				
+	function Person(){
+		this.name = 'rim';
+		this.job = 'siger'
+	}
+	
+	Person.prototype.age = 12
+	
+	var obj1 = new Person();
+	var obj2 = new Person();
+	
+	console.log(obj1.age); //12
+	console.log(obj2.age); //12
+				</code></pre>
+	<br />
+	
+	<p class="special-txt">프로토타입은 모든 함수,객체와 연결된 객체입니다.<br />그렇기 때문에 생성자함수인 Person prototype에 접근하여 age 속성을 넣어주면<br />obj1 , obj2 가 바라보고 있는것이 Person이기 때문에 age 속성을 공유할 수 있죠<br />위의코드에서 결과 값이 12가 나오는 걸 확인하실 수 있습니다</p>
+	</section>
+	<p>[##_Image|kage@EjO7a/btqX826zZC4/Z93g0HSckBeeVNoyPU8fc1/img.png|alignCenter|data-filename="blob" data-origin-width="584" data-origin-height="536" width="300" data-ke-mobilestyle="widthContent"|||_##]</p>
+	<p class="special-txt">위의 그림을 보면 알 수 있듯이<br />생성자함수를 만들어 새 인스턴스를 만들면 새 객체가 생성되면서<br />생성자함수의 프로토타입과 서로 공유할 수 있게 되는것이죠!</p>
+	<section class="special-section">
+	<h3 class="ps-tit">__proto__</h3>
+	<p class="special-txt">프로토타입은 객체에도 연결되어 있습니다.<br />그런데 prototype 으로 접근하는 것이 아니라 __proto__ 속성으로 접근가능해요.<br />변수에 new 키워드로 생성자 함수를 호출하면 새 객체가 만들어지면서 __proto__가 같이 생성됩니다.</p>
+	<br />
+	<pre class="js javascript"><code>				
+	console.log(typeof Person.prototype) // object
+	console.log(typeof obj1.prototype) // undefined
+	console.log(typeof obj1.__proto__) //object
+	
+	console.log(Person.prototype ===  obj1.__proto__) // true
+				</code></pre>
+	<br />
+	<p class="special-txt">obj1 객체에 prototype으로 접근을 시도하니 undefined결과가 나오죠.<br />__proto__로 접근하였더니 객체를 반환합니다.<br /><br />함수의 prototype과 객체의 __proto__가 서로 공유하는 관계이기 때문에 <br />이 둘은 결국 같은거겠죠!<br />서로 같은지 비교해보면 true를 반환합니다.</p>
+	<p class="special-txt">그런데 __proto__는 현재 비표준화 되어있어요. <br />그래서 표준화된 object.getPrototypeOf() 을 사용합니다. 객체의 프로토타입을 반환해주는 메소드에요</p>
+	<br />
+	<pre class="js javascript"><code>				
+	var obj1Proto = Object.getPrototypeOf(obj1);
+	
+	proto.firstName = 'lee';
+	
+	console.log(Person.firstName) // lee
+				</code></pre>
+	<br />
+	<p class="special-txt">새 변수에 object.getPrototypeOf()를 사용하여 obj1를 담아주고 firstName 속성을 추가해주었습니다.<br />그럼 생성자함수 Person에서도 firstName 속성을 사용할 수 있겠죠<br />Object.getPrototypeOf(obj1.__proto__)가 들어있다고 생각하시면 됩니다.</p>
+	</section>
+	<section class="special-section">
+	<h3 class="ps-tit">Prototype Chain</h3>
+	<p class="special-txt">객체의 __proto__와 함수의 prototype은 서로 공유하는 관계라고 했죠.<br />바로 서로 연결되어 있다는 뜻입니다. 이걸 prototype chain이라고 합니다 객체가 [[prototype]] 링크를 통해 프로토타입 객체의 메소드와 속성을 사용할 수 있습니다.</p>
+	<br />
+	<pre class="js javascript"><code>				
+	function Person(name,job){
+		this.name = name;
+		this.job = job
+	}
+	
+	Person.prototype.desc = function(){
+		return this.name + ' 은' + this.job + ' 이다.'
+	}
+	
+	var obj1 = new Person('rim','siger');
+	var obj2 = new Person('young');
+	
+	obj1.start = function(){
+		return this.desc()
+	}
+	obj1.start() // "rim 은siger 이다."
+	obj2.start() // Uncaught TypeError: obj2.start is not a function
+				</code></pre>
+	</section>
+	<p>[##_Image|kage@pl5jg/btqX83qSdFC/ZidqT8pLuMNzWdKsThW2pk/img.png|alignCenter|data-filename="proto2.png" data-origin-width="656" data-origin-height="528" width="400" data-ke-mobilestyle="widthContent"|||_##]</p>
+	<p class="special-txt">위의 코드를 그림으로 풀어놓았는데요.<br />우선 Person함수의 프로토타입에 desc() 메소드를 넣어놨습니다.<br />obj1과 obj2는 new 키워드를 사용해 person함수를 호출하고 있으니 각각 name,job 속성을 갖게되죠.<br />그리고 obj1에 start() 메서드를 만들어주었어요.<br />obj1.start()를 호출하면 함수 안에서 return 값인 desc()를 찾습니다.<br />근데 obj1안에는 없죠?<br />이때 프로토타입체인을 타고 Person()의 프로토타입 객체에서 찾습니다.<br />Person()의 프로토타입에 desc()가 있으니 obj1은 '엇 desc() 메소드가 있네' 하고<br />이 메소드를 return 해줍니다.<br />obj2를 봐볼까요?<br />obj1이랑 obj2가 같은 생성자 함수를 호출하니까 start()메소드를 같이 사용할 수 있을거 같죠?<br />하지만 아닙니다.<br />obj1,obj2는 각각 다른 그릇에 생성자함수를 담고있는 것이고<br />obj1 그릇에만 start메소드를 담아주었으니 obj2에서는 이 함수의 존재도 모르는것이죠.</p>
+	<div>[##_Image|kage@bDiaGE/btqXXUCNmUJ/bDsyWjweXABxZpW9YYOmo1/img.png|alignCenter|data-filename="proto3.png" data-origin-width="688" data-origin-height="587" width="550" data-ke-mobilestyle="widthContent"|||_##]</div>
+	<p>&nbsp;</p>
+	<pre class="js javascript"><code>				
+	obj1.toString() // "[object Object]"
+				</code></pre>
+	<p>&nbsp;</p>
+	<p class="special-txt">자 그럼 obj1에 객체의 toString() 메소드를 불러오면 어떻게될까요?<br />바로 프로토타입체인을 통해서 Object의 toString()메소드를 불러와 객체문자를 반환하게 됩니다.<br />자바스크립트에 기본적으로 Object()가 내장되어있는데 모든 함수객체가 프로토타입을 가지고 있으니<br />Object도 프로토타입이 당연히 있겠죠<br />그래서 Object 속성을 사용할 수 있는거에요.<br />프로토타입은 연결되어있어 공유할 수 있다를 항상 염두해둡시다</p>
+	<section class="special-section">
+	<h3 class="ps-tit">정리</h3>
+	<ul class="special-txt">
+	<li>모든 함수는 prototype 객체를 포함하고 있다.</li>
+	<li>new 키워드로 생성자 함수를 호출하면 __proto__가 생성되고 prototype과 공유된다</li>
+	<li>Object.getPrototypeOf() 은 프로토타입 연결에 접근 할 수 있다</li>
+	<li>객체들이 프로토타입체인을 통해 모든 속성과 메소드를 공유할 수 있다</li>
+	<li>Object()도 프로토타입을 가지고 있다</li>
+	</ul>
+	</section>	
 </body>
 </html>
