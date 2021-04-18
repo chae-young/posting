@@ -1,0 +1,150 @@
+	<!doctype html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+	</head>
+	<body>
+
+		<style>
+
+			@font-face {
+				font-family: 'yg-jalnan';
+				src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+				font-weight: normal;
+				font-style: normal;
+			}
+
+			@font-face {
+				font-family: 'SangSangAnt';
+				src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/SangSangAnt.woff') format('woff');
+				font-weight: normal;
+				font-style: normal;
+			}
+
+
+			.skin_view .area_view pre code{
+				padding: 1px 16px 16px 16px;
+				line-height: initial;
+				background: rgb(0,0,0);
+				display: inline-block;
+				color: yellow;
+				font-style: italic;				
+			}
+			.special-section{
+				margin: 120px auto !important;
+			}
+			.special-section h3.ps-tit{
+				margin: 0 auto 50px !important;
+				font-family: 'yg-jalnan','malgun gothic' !important;
+				font-size:40px !important;
+              color:rgb(0,0,0) !important;
+			}
+			.special-txt{
+				margin: 0 auto 40px !important;
+				font-family: 'SangSangAnt','malgun gothic' !important;
+				font-size:23px !important;
+				line-height: 24px !important;
+				color:rgb(0,0,0) !important;
+			}
+		
+		</style>	
+		<section class="special-section">
+			<p class="special-txt">
+				git 에서 변경사항 내용을 가져오고 병합하는 fetch,pull 에 대해서 알아보겠습니다
+			</p>
+		</section>
+
+		<section class="special-section">
+			<h3 class="ps-tit">git fetch</h3>
+			<div class="special-txt">
+				원격저장소에 있는 변경사항들을 로컬저장소에 가져오기 전에 변경내용을 확인하고 싶은경우에 사용하는 명령어 입니다.
+				<br>
+				만약 제가 작업한 파일을 github에 올리고 퇴근을 했어요. <br>
+				근데 다음날 누군가 제 파일에 수정을 했는지 안했는지 확인하고 싶을때! <br>
+				로컬디렉토리로 변경한 내용을 가져오지 않고 변경한 내역들만 확인하는거죠.<br>
+				그 명령어가 fetch 입니다.
+				<br>
+				어떻게 사용하는지 알아볼까요?
+				<br><br><br>
+				txt 파일을 만들어주었어요
+				<br><br>
+				<img src="../images/git_fetch_pull/1.png">
+				<br><br>
+				git 원격저장소에서 빨간색으로 표시된곳을 클릭 후 수정내용을 추가해줍니다
+				<br><br>
+				<img src="../images/git_fetch_pull/2.png">
+				<br><br>
+				<pre>
+					<code class="js">
+						git fetch 원격저장소 이름
+					</code>
+				</pre>
+				<br><br>
+				fetch뒤에 원격 저장소 이름을 넣어줘요. <br>
+				저는 원격저장소이름이 origin이라 origin으로 하였습니다
+				<br><br>
+				<img src="/images/git_fetch_pull/3.png">
+				<br><br>
+				fetch를 하고 나면 해당 브랜치로 checkout 해주어야해요! <br>
+				해당 명령어를 치면 fetch를 확인 할 수 있는 브랜치 내역들이 나옵니다. <br>
+				origin/master 라고 알려주네요<br>
+				git checkout origin/master 로 해당 브랜치로 들어갑시다
+				<br><br>
+				<img src="../images/git_fetch_pull/4.png">
+				<br><br>	
+				txt 파일을 열어보면 원격저장소에서 수정한 내용이 추가되었어요.<br>
+				fetch로 가져온 내용은 로컬디렉토리엔 저장되지 않고 브랜치로 checkout 하여 <br>
+				변경된 내용들을 확인만 하는것 입니다.
+				<br><br>
+				<img src="../images/git_fetch_pull/5.png">
+				<br><br>
+				git log로 fetch한 commit 내역도 확인 할 수 있습니다<br>
+				그러면 누가 프로젝트에 commit을 했는지 안했는지 확인을 할수 있겠죠?
+				<br><br>
+				<img src="../images/git_fetch_pull/6.png">
+				<br><br>
+				fetch는 원격저장소에서 파일을 병합하기 전에 병합을 할지 말지 확인을 할수 있는 용도로 사용되고 있습니다.			
+			</div>
+			<br />
+		</section>
+
+		<section class="special-section">
+			<h3 class="ps-tit">git pull</h3>
+			<div class="special-txt">
+				원격저장소에 있는 변경사항들을 로컬저장소로 가져와 합치는 명령어입니다. 
+				<br>
+				fetch랑 다르게 로컬디렉로리에 변경내용을 병합합니다.
+				<br><br>
+				<pre>
+					<code class="js">
+						git pull
+					</code>
+				</pre>
+				<br><br>
+				아까 fetch한 파일을 pull해 봅시다.
+				<br><br>
+				<img src="/images/git_fetch_pull/7.png">
+				<br><br>
+				text.txt 에추가가 되었다고 알려주네요. <br>
+				git log내역에도 변경된 commit이 추가되었습니다
+				<br><br>
+				<img src="/images/git_fetch_pull/9.png">
+				<br><br>				
+			</div>
+			<br />
+		</section>
+
+		<section class="special-section">
+			<h3 class="ps-tit">git fetch vs git pull</h3>
+			<p class="special-txt">
+				둘다 원격저장소의 내용을 가져오는데 사용됩니다. <br>
+				fetch는 가져온 변경내용을 로컬에 영향을 미치지 않으며, 병합하기전에 확인하는 용도로 사용하는 것이 좋습니다. <br>
+				pull은 가져온 변경내용을 로컬에 병합합니다. 하지만 로컬에서 작업하다가 변경된 내용을 pull할 경우 충돌이 일어날 수 있습니다.<br>
+				왠만해선 fetch후 pull을 로컬이 깨끗한 상태에서 사용하는게 좋습니다. fetch와 pull을 적절하게 사용합시다. 
+			</p>
+		</section>
+		
+		
+	</body>
+	</html>
